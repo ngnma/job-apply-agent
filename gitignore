@@ -1,0 +1,46 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# --- Virtual environments (uv / venv) ---
+.venv/
+venv/
+
+# --- Secrets & environment ---
+.env
+.env.*
+!.env.example
+*.pem
+.aws/
+
+# --- Personal data (master CV, generated CVs/cover letters) ---
+data/
+outputs/
+*.docx
+*.pdf
+!tests/fixtures/**
+
+# --- Testing & tooling caches ---
+.pytest_cache/
+.coverage
+htmlcov/
+.ruff_cache/
+.mypy_cache/
+
+# --- Notebooks ---
+.ipynb_checkpoints/
+
+# --- Docker volumes / local DB data ---
+pgdata/
+
+# --- IDE / OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- Logs ---
+*.log
