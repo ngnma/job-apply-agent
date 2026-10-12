@@ -9,12 +9,15 @@ TailoredCV = what goes into the Word template for one job. Every line cites
 from __future__ import annotations
 
 from datetime import date
-from typing import Self
+from typing import Annotated, Self
 
 from pydantic import BaseModel, ConfigDict, EmailStr, Field, HttpUrl, model_validator
+from pydantic.json_schema import SkipJsonSchema
 
-# ID format: lowercase words joined by "-", e.g. "exp-snappshop", "exp-snappshop-b1"
+# IDs are created by code (not the LLM), so they are hidden from the JSON schema
+# the LLM sees. Format: lowercase words joined by "-", e.g. "exp-snappshop-b1".
 ID_PATTERN = r"^[a-z0-9]+(-[a-z0-9]+)*$"
+ItemId = Annotated[SkipJsonSchema[str], Field(pattern=rf"^$|{ID_PATTERN}")]
 
 
 class Strict(BaseModel):
@@ -46,7 +49,7 @@ class Period(Strict):
 
 
 class Bullet(Strict):
-    id: str = Field(pattern=ID_PATTERN)
+    id: ItemId = ""
     text: str = Field(min_length=10)
     skills: list[str] = []  # tags, e.g. ["Python", "Airflow"]; help retrieval + ATS
 
@@ -63,7 +66,7 @@ class Contact(Strict):
 
 
 class Experience(Strict):
-    id: str = Field(pattern=ID_PATTERN)
+    id: ItemId = ""
     position: str
     company: str
     location: str
@@ -72,21 +75,21 @@ class Experience(Strict):
 
 
 class Project(Strict):
-    id: str = Field(pattern=ID_PATTERN)
+    id: ItemId = ""
     title: str
     tools: list[str] = Field(min_length=1)
-    link: HttpUrl | None = None  # some projects have no repo
+    link: HttpUrl | None = None  # one repo link, or None
     bullets: list[Bullet] = Field(min_length=1)
 
 
 class SkillGroup(Strict):
-    id: str = Field(pattern=ID_PATTERN)
+    id: ItemId = ""
     name: str  # e.g. "Machine Learning"
     items: list[str] = Field(min_length=1)
 
 
 class Education(Strict):
-    id: str = Field(pattern=ID_PATTERN)
+    id: ItemId = ""
     degree: str  # e.g. "MSc Artificial Intelligence"
     institution: str
     location: str
@@ -97,7 +100,7 @@ class Education(Strict):
 
 
 class Certification(Strict):
-    id: str = Field(pattern=ID_PATTERN)
+    id: ItemId = ""
     title: str
     provider: str
     year: int = Field(ge=1990, le=2100)
@@ -106,7 +109,9 @@ class Certification(Strict):
 
 class MasterCV(Strict):
     contact: Contact
-    summary: str  # base summary; rewritten per job in TailoredCV
+    # Copied ONLY if the CV already has a summary section; never generated here.
+    # The job-specific summary is written later, in TailoredCV.summary.
+    summary: str | None = None
     experiences: list[Experience]
     projects: list[Project]
     skills: list[SkillGroup]
@@ -117,6 +122,8 @@ class MasterCV(Strict):
     def ids_unique(self) -> Self:
         ids = [x.id for x in self.all_items()]
         ids += [b.id for x in [*self.experiences, *self.projects] for b in x.bullets]
+        if "" in ids:
+            raise ValueError("every item and bullet needs an id (run assign_ids)")
         dupes = {i for i in ids if ids.count(i) > 1}
         if dupes:
             raise ValueError(f"duplicate ids: {sorted(dupes)}")
@@ -149,6 +156,9 @@ class TailoredSkillGroup(Strict):
 
 class TailoredCV(Strict):
     job_id: str
+    # Always written for the job post. Built from the master summary (if there is
+    # one) plus the experiences/projects/skills chosen for this job.
+    # source_ids = the master IDs it is based on (use "summary" for MasterCV.summary).
     summary: GroundedText
     experiences: list[TailoredSection] = Field(max_length=2)
     projects: list[TailoredSection] = Field(max_length=3)
