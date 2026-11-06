@@ -8,16 +8,45 @@ TailoredCV = what goes into the Word template for one job. Every line cites
 
 from __future__ import annotations
 
+import re
 from datetime import date
 from typing import Annotated, Self
 
-from pydantic import BaseModel, ConfigDict, EmailStr, Field, HttpUrl, model_validator
+from pydantic import (
+    BaseModel,
+    BeforeValidator,
+    ConfigDict,
+    EmailStr,
+    Field,
+    HttpUrl,
+    model_validator,
+)
 from pydantic.json_schema import SkipJsonSchema
 
 # IDs are created by code (not the LLM), so they are hidden from the JSON schema
 # the LLM sees. Format: lowercase words joined by "-", e.g. "exp-snappshop-b1".
 ID_PATTERN = r"^[a-z0-9]+(-[a-z0-9]+)*$"
 ItemId = Annotated[SkipJsonSchema[str], Field(pattern=rf"^$|{ID_PATTERN}")]
+
+
+def _first_url(value: object) -> object:
+    """'GitHub (https://github.com/x)' -> 'https://github.com/x'; 'GitHub' (no URL) -> None."""
+    if not isinstance(value, str):
+        return value
+    match = re.search(r"https?://[^\s,()]+", value)
+    return match.group(0) if match else None
+
+
+def _strip_bullet_mark(value: object) -> object:
+    """'- Built a model...' -> 'Built a model...'"""
+    return re.sub(r"^\s*[-•▪◦]\s*", "", value) if isinstance(value, str) else value
+
+
+# LLMs often return the link text with the URL, or just "GitHub"; keep only the URL.
+LinkUrl = Annotated[HttpUrl | None, BeforeValidator(_first_url)]
+# "### Soft Skills" -> "Soft Skills" (the loader marks headings with #)
+HeadingText = Annotated[str, BeforeValidator(lambda v: v.lstrip("# ").strip() if isinstance(v, str) else v)]
+BulletText = Annotated[str, BeforeValidator(_strip_bullet_mark), Field(min_length=10)]
 
 
 class Strict(BaseModel):
@@ -50,7 +79,7 @@ class Period(Strict):
 
 class Bullet(Strict):
     id: ItemId = ""
-    text: str = Field(min_length=10)
+    text: BulletText
     skills: list[str] = []  # tags, e.g. ["Python", "Airflow"]; help retrieval + ATS
 
 
@@ -78,14 +107,17 @@ class Project(Strict):
     id: ItemId = ""
     title: str
     tools: list[str] = Field(min_length=1)
-    link: HttpUrl | None = None  # one repo link, or None
+    link: LinkUrl = None  # one repo link, or None
     bullets: list[Bullet] = Field(min_length=1)
 
 
-class SkillGroup(Strict):
+class Skill(Strict):
+    """One skill = one item (e.g. "Docker"), not a group of skills."""
     id: ItemId = ""
-    name: str  # e.g. "Machine Learning"
-    items: list[str] = Field(min_length=1)
+    name: str  # e.g. "Docker"
+    # the CV group(s) it is listed under, e.g. ["MLOps, Deployment & Cloud"];
+    # more than one if the CV lists it twice (e.g. LangChain)
+    categories: list[HeadingText] = Field(min_length=1)
 
 
 class Education(Strict):
@@ -104,7 +136,7 @@ class Certification(Strict):
     title: str
     provider: str
     year: int = Field(ge=1990, le=2100)
-    link: HttpUrl | None = None
+    link: LinkUrl = None
 
 
 class MasterCV(Strict):
@@ -114,7 +146,7 @@ class MasterCV(Strict):
     summary: str | None = None
     experiences: list[Experience]
     projects: list[Project]
-    skills: list[SkillGroup]
+    skills: list[Skill]
     education: list[Education]
     certifications: list[Certification] = []
 
@@ -129,7 +161,7 @@ class MasterCV(Strict):
             raise ValueError(f"duplicate ids: {sorted(dupes)}")
         return self
 
-    def all_items(self) -> list[Experience | Project | SkillGroup | Education | Certification]:
+    def all_items(self) -> list[Experience | Project | Skill | Education | Certification]:
         return [*self.experiences, *self.projects, *self.skills, *self.education, *self.certifications]
 
     def bullet_index(self) -> dict[str, Bullet]:
@@ -150,8 +182,8 @@ class TailoredSection(Strict):
 
 
 class TailoredSkillGroup(Strict):
-    name: str
-    items: list[str] = Field(min_length=1)  # must exist in master skills/tools
+    name: str  # group shown on the CV, e.g. "MLOps & Cloud"
+    skill_ids: list[str] = Field(min_length=1)  # master Skill ids, e.g. ["skill-docker"]
 
 
 class TailoredCV(Strict):

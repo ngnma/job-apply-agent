@@ -171,169 +171,313 @@
   ],
   "projects": [
     {
-      "id": "proj-agentic-ai-ai-engineering",
-      "title": "## Agentic AI / AI Engineering projects",
+      "id": "proj-sentiment-analysis",
+      "title": "Sentiment Analysis — LLM Benchmarking and MLOps on AWS",
       "tools": [
-        "Sentiment Analysis — LLM Benchmarking and MLOps on AWS|MLflow, FastAPI, Docker, AWS, Terraform, CI/CD, GitHub Actions, Model Monitoring, Python, PyTorch, Hugging Face| GitHub (https://github.com/ngnma/Sentiment-Analysis-Logistic-Regression-vs-LLMs)",
-        "Agentic AI Compliance Assistant — LLM Agent with RAG| LLMs, LangChain, RAG, ChromaDB, Ollama, FastAPI, human-in-the-loop |Github",
-        "Natural Language to SQL Agent | LLM, Oracle Cloud Infrastructure (OCI), Prompt Engineering, LLM Evaluation, Streamlit, Python | Github (https://github.com/ngnma/query-generator)",
-        "Autonomous AI Agent for Machine Learning Pipeline Generation | Agentic AI, Python | GitHub (https://github.com/ngnma/Agentic-Data-Scientist)"
+        "MLflow",
+        "FastAPI",
+        "Docker",
+        "AWS",
+        "Terraform",
+        "CI/CD",
+        "GitHub Actions",
+        "Model Monitoring",
+        "Python",
+        "PyTorch",
+        "Hugging Face"
+      ],
+      "link": "https://github.com/ngnma/Sentiment-Analysis-Logistic-Regression-vs-LLMs",
+      "bullets": [
+        {
+          "id": "proj-sentiment-analysis-b1",
+          "text": "Built a classical NLP baseline model for product-review sentiment classification, implementing text preprocessing, feature extraction (Bag-of-Words, TF-IDF, Word2Vec), logistic regression training, cross-validation and hyperparameter tuning.",
+          "skills": []
+        },
+        {
+          "id": "proj-sentiment-analysis-b2",
+          "text": "Benchmarked five open-source LLMs on accuracy and inference cost, selecting FLAN-T5 as the best performance–cost trade-off, then evaluated three prompt-engineering techniques (zero-shot, few-shot and role prompting) to improve model performance.",
+          "skills": []
+        },
+        {
+          "id": "proj-sentiment-analysis-b3",
+          "text": "Evaluated the tuned LLM against the classical baseline (91.4% vs. 89.6% macro-F1) and compared both approaches against published state-of-the-art results for the task for more credibility.",
+          "skills": []
+        },
+        {
+          "id": "proj-sentiment-analysis-b4",
+          "text": "Deployed the selected model as a containerised inference API on AWS, using MLflow for experiment tracking, model versioning and model registry.",
+          "skills": []
+        },
+        {
+          "id": "proj-sentiment-analysis-b5",
+          "text": "Provisioned the infrastructure as code using Terraform (ECR, Lambda, API Gateway, IAM, CloudWatch), with GitHub Actions automating tests, container builds and deployments.",
+          "skills": []
+        },
+        {
+          "id": "proj-sentiment-analysis-b6",
+          "text": "Instrumented monitoring through CloudWatch metrics and threshold-based alerting, logging inference inputs and outputs to support model and data drift monitoring.",
+          "skills": []
+        }
+      ]
+    },
+    {
+      "id": "proj-agentic-ai-compliance-assistant",
+      "title": "Agentic AI Compliance Assistant — LLM Agent with RAG",
+      "tools": [
+        "LLMs",
+        "LangChain",
+        "RAG",
+        "ChromaDB",
+        "Ollama",
+        "FastAPI",
+        "human-in-the-loop"
+      ],
+      "link": "https://github.com/ngnma/Agentic-AI-Assistant-for-Affiliate-Agency",
+      "bullets": [
+        {
+          "id": "proj-agentic-ai-compliance-assistant-b1",
+          "text": "Automated a manual marketing compliance process by building an agentic workflow that searches external sources, classifies evidence and checks potential contract breaches, routing flagged cases to human reviewers.",
+          "skills": []
+        },
+        {
+          "id": "proj-agentic-ai-compliance-assistant-b2",
+          "text": "Orchestrated multi-step tool use and validation in LangChain, verifying each stage before passing its output downstream to reduce error propagation.",
+          "skills": []
+        },
+        {
+          "id": "proj-agentic-ai-compliance-assistant-b3",
+          "text": "Implemented RAG over a ChromaDB vector database using sentence-transformer embeddings to retrieve relevant contract clauses, ground breach decisions in source documents and provide citations, helping mitigate hallucination.",
+          "skills": []
+        },
+        {
+          "id": "proj-agentic-ai-compliance-assistant-b4",
+          "text": "Served the system through FastAPI and Gradio with human-in-the-loop approval gates, while running the LLM locally through Ollama to keep contract data in-house.",
+          "skills": []
+        }
+      ]
+    },
+    {
+      "id": "proj-natural-language-to-sql",
+      "title": "Natural Language to SQL Agent",
+      "tools": [
+        "LLM",
+        "Oracle Cloud Infrastructure (OCI)",
+        "Prompt Engineering",
+        "LLM Evaluation",
+        "Streamlit",
+        "Python"
+      ],
+      "link": "https://github.com/ngnma/query-generator",
+      "bullets": [
+        {
+          "id": "proj-natural-language-to-sql-b1",
+          "text": "Built an LLM-powered agentic workflow that translates natural-language business questions into executable SQL against a relational schema, enabling non-technical users to explore data without manually writing queries.",
+          "skills": []
+        },
+        {
+          "id": "proj-natural-language-to-sql-b2",
+          "text": "Engineered schema-aware prompt templates with table-metadata retrieval, validation guardrails and retry-on-failure logic, checking generated SQL for syntax errors before database execution.",
+          "skills": []
+        },
+        {
+          "id": "proj-natural-language-to-sql-b3",
+          "text": "Deployed the application on Oracle Cloud Infrastructure with a Streamlit interface supporting query results, generated visualisations and chatbot for follow-up questions.",
+          "skills": []
+        }
+      ]
+    },
+    {
+      "id": "proj-autonomous-ai-agent-for",
+      "title": "Autonomous AI Agent for Machine Learning Pipeline Generation",
+      "tools": [
+        "Agentic AI",
+        "Python"
+      ],
+      "link": "https://github.com/ngnma/Agentic-Data-Scientist",
+      "bullets": [
+        {
+          "id": "proj-autonomous-ai-agent-for-b1",
+          "text": "Designed an autonomous agent concept to automate the end-to-end ML workflow for tabular datasets, from problem framing to model selection.",
+          "skills": []
+        },
+        {
+          "id": "proj-autonomous-ai-agent-for-b2",
+          "text": "Architected the system around planner, executor, reflector, and memory modules to enable iterative self-correction across the pipeline.",
+          "skills": []
+        }
+      ]
+    },
+    {
+      "id": "proj-synthetic-ecg-signal-generation",
+      "title": "Synthetic ECG Signal Generation — BiLSTM-CNN GAN",
+      "tools": [
+        "Python",
+        "PyTorch"
+      ],
+      "link": "https://github.com/ngnma/ECG-Signal-Generation-using-BiLSTM-CNN-GAN",
+      "bullets": [
+        {
+          "id": "proj-synthetic-ecg-signal-generation-b1",
+          "text": "Reproduced and adapted a published GAN architecture to generate synthetic ECG signals, addressing data scarcity and privacy constraints that limit access to real clinical ECG data.",
+          "skills": []
+        },
+        {
+          "id": "proj-synthetic-ecg-signal-generation-b2",
+          "text": "Built an end-to-end PyTorch pipeline on the PhysioNet/CinC 2017 dataset — a BiLSTM generator vs. 1D-CNN discriminator, tuned to stabilise adversarial training — achieving an RMSE of 0.30 on held-out data.",
+          "skills": []
+        }
+      ]
+    },
+    {
+      "id": "proj-end-to-end-ml",
+      "title": "End-to-End ML Pipeline for Loyalty Programme",
+      "tools": [
+        "Python",
+        "XGBoost",
+        "Scikit-learn",
+        "Airflow"
       ],
       "link": null,
       "bullets": [
         {
-          "id": "proj-agentic-ai-ai-engineering-b1",
-          "text": "- Built a classical NLP baseline model for product-review sentiment classification, implementing text preprocessing, feature extraction (Bag-of-Words, TF-IDF, Word2Vec), logistic regression training, cross-validation and hyperparameter tuning.",
+          "id": "proj-end-to-end-ml-b1",
+          "text": "Developed an XGBoost model to identify high-value customers likely to increase purchase frequency after loyalty programme enrolment, engineering 26+ predictive features from 5M+ purchase records (SMOTE for class imbalance) to reach 83% accuracy / 76% F-beta.",
           "skills": []
         },
         {
-          "id": "proj-agentic-ai-ai-engineering-b2",
-          "text": "- Benchmarked five open-source LLMs on accuracy and inference cost, selecting FLAN-T5 as the best performance–cost trade-off, then evaluated three prompt-engineering techniques (zero-shot, few-shot and role prompting) to improve model performance.",
+          "id": "proj-end-to-end-ml-b2",
+          "text": "Validated ROI via A/B testing — a 10% lift in monthly purchase frequency vs. baseline — and automated weekly batch predictions and campaign triggers with Apache Airflow.",
+          "skills": []
+        }
+      ]
+    },
+    {
+      "id": "proj-stock-return-prediction",
+      "title": "Stock Return Prediction — Financial Time Series",
+      "tools": [
+        "Python",
+        "scikit-learn",
+        "PyTorch"
+      ],
+      "link": "https://github.com/ngnma/Stock-Return-Prediction-using-Machine-Learning",
+      "bullets": [
+        {
+          "id": "proj-stock-return-prediction-b1",
+          "text": "Built return-prediction models for five S&P 500 assets to test how far short-term returns can be forecast from noisy market data, engineering moving-average, volatility, momentum, and market-wide features.",
           "skills": []
         },
         {
-          "id": "proj-agentic-ai-ai-engineering-b3",
-          "text": "- Evaluated the tuned LLM against the classical baseline (91.4% vs. 89.6% macro-F1) and compared both approaches against published state-of-the-art results for the task for more credibility.",
+          "id": "proj-stock-return-prediction-b2",
+          "text": "Ran the full pipeline from preprocessing to hyperparameter tuning, benchmarking OLS, SVR, Random Forest, and LSTM, and identified key return drivers via OLS coefficient significance and Random Forest feature importance.",
+          "skills": []
+        }
+      ]
+    },
+    {
+      "id": "proj-unified-kpi-data-platform",
+      "title": "Unified KPI Data Platform — Feature-Store-Inspired Pipeline",
+      "tools": [
+        "Python",
+        "SQL",
+        "Spark",
+        "Airflow"
+      ],
+      "link": null,
+      "bullets": [
+        {
+          "id": "proj-unified-kpi-data-platform-b1",
+          "text": "Designed and built a scalable data pipeline on a feature-store-inspired architecture to consolidate KPIs fragmented across multiple source systems, isolating each metric in its own table for reuse across data science and BI teams.",
           "skills": []
         },
         {
-          "id": "proj-agentic-ai-ai-engineering-b4",
-          "text": "- Deployed the selected model as a containerised inference API on AWS, using MLflow for experiment tracking, model versioning and model registry.",
+          "id": "proj-unified-kpi-data-platform-b2",
+          "text": "Delivered a maintainable single source of truth that eliminated conflicting KPI definitions and let new metrics be added without reworking existing pipelines.",
+          "skills": []
+        }
+      ]
+    },
+    {
+      "id": "proj-unified-marketing-channel-efficiency",
+      "title": "Unified Marketing-Channel Efficiency Framework (CPIO)",
+      "tools": [
+        "Causal Inference",
+        "A/B Testing"
+      ],
+      "link": null,
+      "bullets": [
+        {
+          "id": "proj-unified-marketing-channel-efficiency-b1",
+          "text": "Replaced cost-per-order (CPO) — which ignored order cannibalisation and misaligned marketing and growth teams on budget decisions — with a new cost-per-incremental-order (CPIO) metric.",
           "skills": []
         },
         {
-          "id": "proj-agentic-ai-ai-engineering-b5",
-          "text": "- Provisioned the infrastructure as code using Terraform (ECR, Lambda, API Gateway, IAM, CloudWatch), with GitHub Actions automating tests, container builds and deployments.",
+          "id": "proj-unified-marketing-channel-efficiency-b2",
+          "text": "Quantified each channel's cannibalised orders via causal inference and A/B testing across CRM, campaigns, and paid channels, aligning both teams on data-driven budget allocation and more efficient P&L management.",
+          "skills": []
+        }
+      ]
+    },
+    {
+      "id": "proj-marketing-channel-uplift-measurement",
+      "title": "Marketing-Channel Uplift Measurement via Causal Inference",
+      "tools": [
+        "Propensity Score Matching",
+        "Causal Inference"
+      ],
+      "link": null,
+      "bullets": [
+        {
+          "id": "proj-marketing-channel-uplift-measurement-b1",
+          "text": "Launched a new loyalty-programme marketing channel at SnappShop contributing ~30% of daily orders, but its true incremental uplift couldn't be measured via A/B test.",
           "skills": []
         },
         {
-          "id": "proj-agentic-ai-ai-engineering-b6",
-          "text": "- Instrumented monitoring through CloudWatch metrics and threshold-based alerting, logging inference inputs and outputs to support model and data drift monitoring.",
+          "id": "proj-marketing-channel-uplift-measurement-b2",
+          "text": "Estimated causal uplift on high-volume, heterogeneous data using propensity score matching to build a strong common-support region, addressing selection bias and non-parallel trends and giving leadership a robust basis to optimise or scale the channel.",
+          "skills": []
+        }
+      ]
+    },
+    {
+      "id": "proj-a-b-testing-framework",
+      "title": "A/B Testing Framework",
+      "tools": [
+        "A/B Testing",
+        "Statistics"
+      ],
+      "link": null,
+      "bullets": [
+        {
+          "id": "proj-a-b-testing-framework-b1",
+          "text": "Designed and implemented a scalable, statistically grounded A/B testing framework with prime-based user segmentation for parallel experiments, multi-treatment allocation, and a monitoring dashboard adopted across product, marketing, and data science teams.",
           "skills": []
         },
         {
-          "id": "proj-agentic-ai-ai-engineering-b7",
-          "text": "- Automated a manual marketing compliance process by building an agentic workflow that searches external sources, classifies evidence and checks potential contract breaches, routing flagged cases to human reviewers.",
+          "id": "proj-a-b-testing-framework-b2",
+          "text": "Led and analysed 20+ A/B tests over two years across pricing, incentives, and search, contributing to a 3% increase in company margin.",
+          "skills": []
+        }
+      ]
+    },
+    {
+      "id": "proj-university-course-management-web",
+      "title": "University Course-Management Web Application",
+      "tools": [
+        "React",
+        "Node.js",
+        "Express",
+        "MongoDB"
+      ],
+      "link": "https://github.com/ngnma/Golestan-Frontend",
+      "bullets": [
+        {
+          "id": "proj-university-course-management-web-b1",
+          "text": "Built a full-stack course-management app with authentication, role-based dashboards, and student registration workflows.",
           "skills": []
         },
         {
-          "id": "proj-agentic-ai-ai-engineering-b8",
-          "text": "- Orchestrated multi-step tool use and validation in LangChain, verifying each stage before passing its output downstream to reduce error propagation.",
-          "skills": []
-        },
-        {
-          "id": "proj-agentic-ai-ai-engineering-b9",
-          "text": "- Implemented RAG over a ChromaDB vector database using sentence-transformer embeddings to retrieve relevant contract clauses, ground breach decisions in source documents and provide citations, helping mitigate hallucination.",
-          "skills": []
-        },
-        {
-          "id": "proj-agentic-ai-ai-engineering-b10",
-          "text": "- Served the system through FastAPI and Gradio with human-in-the-loop approval gates, while running the LLM locally through Ollama to keep contract data in-house.",
-          "skills": []
-        },
-        {
-          "id": "proj-agentic-ai-ai-engineering-b11",
-          "text": "- Built an LLM-powered agentic workflow that translates natural-language business questions into executable SQL against a relational schema, enabling non-technical users to explore data without manually writing queries.",
-          "skills": []
-        },
-        {
-          "id": "proj-agentic-ai-ai-engineering-b12",
-          "text": "- Engineered schema-aware prompt templates with table-metadata retrieval, validation guardrails and retry-on-failure logic, checking generated SQL for syntax errors before database execution.",
-          "skills": []
-        },
-        {
-          "id": "proj-agentic-ai-ai-engineering-b13",
-          "text": "- Deployed the application on Oracle Cloud Infrastructure with a Streamlit interface supporting query results, generated visualisations and chatbot for follow-up questions.",
-          "skills": []
-        },
-        {
-          "id": "proj-agentic-ai-ai-engineering-b14",
-          "text": "- Designed an autonomous agent concept to automate the end-to-end ML workflow for tabular datasets, from problem framing to model selection.",
-          "skills": []
-        },
-        {
-          "id": "proj-agentic-ai-ai-engineering-b15",
-          "text": "- Architected the system around planner, executor, reflector, and memory modules to enable iterative self-correction across the pipeline.",
-          "skills": []
-        },
-        {
-          "id": "proj-agentic-ai-ai-engineering-b16",
-          "text": "- Reproduced and adapted a published GAN architecture to generate synthetic ECG signals, addressing data scarcity and privacy constraints that limit access to real clinical ECG data.",
-          "skills": []
-        },
-        {
-          "id": "proj-agentic-ai-ai-engineering-b17",
-          "text": "- Built an end-to-end PyTorch pipeline on the PhysioNet/CinC 2017 dataset — a BiLSTM generator vs. 1D-CNN discriminator, tuned to stabilise adversarial training — achieving an RMSE of 0.30 on held-out data.",
-          "skills": []
-        },
-        {
-          "id": "proj-agentic-ai-ai-engineering-b18",
-          "text": "- Developed an XGBoost model to identify high-value customers likely to increase purchase frequency after loyalty programme enrolment, engineering 26+ predictive features from 5M+ purchase records (SMOTE for class imbalance) to reach 83% accuracy / 76% F-beta.",
-          "skills": []
-        },
-        {
-          "id": "proj-agentic-ai-ai-engineering-b19",
-          "text": "- Validated ROI via A/B testing — a 10% lift in monthly purchase frequency vs. baseline — and automated weekly batch predictions and campaign triggers with Apache Airflow.",
-          "skills": []
-        },
-        {
-          "id": "proj-agentic-ai-ai-engineering-b20",
-          "text": "- Built return-prediction models for five S&P 500 assets to test how far short-term returns can be forecast from noisy market data, engineering moving-average, volatility, momentum, and market-wide features.",
-          "skills": []
-        },
-        {
-          "id": "proj-agentic-ai-ai-engineering-b21",
-          "text": "- Ran the full pipeline from preprocessing to hyperparameter tuning, benchmarking OLS, SVR, Random Forest, and LSTM, and identified key return drivers via OLS coefficient significance and Random Forest feature importance.",
-          "skills": []
-        },
-        {
-          "id": "proj-agentic-ai-ai-engineering-b22",
-          "text": "- Designed and built a scalable data pipeline on a feature-store-inspired architecture to consolidate KPIs fragmented across multiple source systems, isolating each metric in its own table for reuse across data science and BI teams.",
-          "skills": []
-        },
-        {
-          "id": "proj-agentic-ai-ai-engineering-b23",
-          "text": "- Delivered a maintainable single source of truth that eliminated conflicting KPI definitions and let new metrics be added without reworking existing pipelines.",
-          "skills": []
-        },
-        {
-          "id": "proj-agentic-ai-ai-engineering-b24",
-          "text": "- Replaced cost-per-order (CPO) — which ignored order cannibalisation and misaligned marketing and growth teams on budget decisions — with a new cost-per-incremental-order (CPIO) metric.",
-          "skills": []
-        },
-        {
-          "id": "proj-agentic-ai-ai-engineering-b25",
-          "text": "- Quantified each channel's cannibalised orders via causal inference and A/B testing across CRM, campaigns, and paid channels, aligning both teams on data-driven budget allocation and more efficient P&L management.",
-          "skills": []
-        },
-        {
-          "id": "proj-agentic-ai-ai-engineering-b26",
-          "text": "- Launched a new loyalty-programme marketing channel at SnappShop contributing ~30% of daily orders, but its true incremental uplift couldn't be measured via A/B test.",
-          "skills": []
-        },
-        {
-          "id": "proj-agentic-ai-ai-engineering-b27",
-          "text": "- Estimated causal uplift on high-volume, heterogeneous data using propensity score matching to build a strong common-support region, addressing selection bias and non-parallel trends and giving leadership a robust basis to optimise or scale the channel.",
-          "skills": []
-        },
-        {
-          "id": "proj-agentic-ai-ai-engineering-b28",
-          "text": "- Designed and implemented a scalable, statistically grounded A/B testing framework with prime-based user segmentation for parallel experiments, multi-treatment allocation, and a monitoring dashboard adopted across product, marketing, and data science teams.",
-          "skills": []
-        },
-        {
-          "id": "proj-agentic-ai-ai-engineering-b29",
-          "text": "- Led and analysed 20+ A/B tests over two years across pricing, incentives, and search, contributing to a 3% increase in company margin.",
-          "skills": []
-        },
-        {
-          "id": "proj-agentic-ai-ai-engineering-b30",
-          "text": "- Built a full-stack course-management app with authentication, role-based dashboards, and student registration workflows.",
-          "skills": []
-        },
-        {
-          "id": "proj-agentic-ai-ai-engineering-b31",
-          "text": "- Developed a RESTful Node.js/Express/MongoDB backend (MVC, JWT auth) paired with a responsive React frontend (Redux, Material UI) delivering role-specific experiences.",
+          "id": "proj-university-course-management-web-b2",
+          "text": "Developed a RESTful Node.js/Express/MongoDB backend (MVC, JWT auth) paired with a responsive React frontend (Redux, Material UI) delivering role-specific experiences.",
           "skills": []
         }
       ]
@@ -341,205 +485,708 @@
   ],
   "skills": [
     {
-      "id": "skills-programming-languages",
-      "name": "Programming Languages",
-      "items": [
-        "Python",
-        "SQL",
-        "Java",
-        "JavaScript"
+      "id": "skill-python",
+      "name": "Python",
+      "categories": [
+        "Programming Languages"
       ]
     },
     {
-      "id": "skills-machine-learning-ai",
-      "name": "Machine Learning & AI",
-      "items": [
-        "Machine learning",
-        "deep learning",
-        "neural networks",
-        "CNNs",
-        "LSTMs",
-        "GANs",
-        "Transformers",
-        "reinforcement learning",
-        "natural language processing",
-        "predictive modelling",
-        "forecasting",
-        "time-series forecasting",
-        "LLMs",
-        "RAG",
-        "agentic AI",
-        "prompt engineering",
-        "feature engineering",
-        "model evaluation"
+      "id": "skill-sql",
+      "name": "SQL",
+      "categories": [
+        "Programming Languages"
       ]
     },
     {
-      "id": "skills-agentic-ai",
-      "name": "Agentic AI",
-      "items": [
-        "Large Language Models (LLMs)",
-        "LangChain",
-        "Retrieval-Augmented Generation (RAG)",
-        "Prompt Engineering",
-        "Vector Databases (ChromaDB)",
-        "Embeddings",
-        "Guardrails",
-        "Human-in-the-Loop"
+      "id": "skill-java",
+      "name": "Java",
+      "categories": [
+        "Programming Languages"
       ]
     },
     {
-      "id": "skills-machine-learning-frameworks",
-      "name": "Machine Learning Frameworks",
-      "items": [
-        "PyTorch",
-        "TensorFlow",
-        "scikit-learn",
-        "Hugging Face",
-        "LangChain"
+      "id": "skill-javascript",
+      "name": "JavaScript",
+      "categories": [
+        "Programming Languages"
       ]
     },
     {
-      "id": "skills-mlops-deployment-cloud",
-      "name": "MLOps, Deployment & Cloud",
-      "items": [
-        "MLflow",
-        "Docker",
-        "Terraform (IaC)",
-        "GitHub Actions (CI/CD)",
-        "AWS",
-        "Oracle Cloud Infrastructure (OCI)",
-        "FastAPI",
-        "REST APIs",
-        "Model Serving",
-        "Batch Inference",
-        "Docker",
-        "Git",
-        "Streamlit",
-        "Gradio"
+      "id": "skill-machine-learning",
+      "name": "Machine learning",
+      "categories": [
+        "Machine Learning & AI"
       ]
     },
     {
-      "id": "skills-data-analysis-and-visualisation",
-      "name": "Data Analysis and Visualisation",
-      "items": [
-        "Pandas",
-        "NumPy",
-        "Tableau",
-        "Power BI",
-        "GA4",
-        "Google Analytics",
-        "Metabase",
-        "Excel"
+      "id": "skill-deep-learning",
+      "name": "deep learning",
+      "categories": [
+        "Machine Learning & AI"
       ]
     },
     {
-      "id": "skills-statistics-experimentation-causal-inference",
-      "name": "Statistics, Experimentation & Causal Inference",
-      "items": [
-        "Applied statistics",
-        "statistical modelling",
-        "hypothesis testing",
-        "A/B testing",
-        "experimental design",
-        "causal inference",
-        "Difference-in-Differences",
-        "propensity score matching",
-        "counterfactual analysis",
-        "sensitivity analysis",
-        "confidence intervals",
-        "minimum detectable effect analysis",
-        "intervention analysis"
+      "id": "skill-neural-networks",
+      "name": "neural networks",
+      "categories": [
+        "Machine Learning & AI"
       ]
     },
     {
-      "id": "skills-time-series-analysis",
-      "name": "Time-Series Analysis",
-      "items": [
-        "Time-series analysis",
-        "time-series forecasting"
+      "id": "skill-cnns",
+      "name": "CNNs",
+      "categories": [
+        "Machine Learning & AI"
       ]
     },
     {
-      "id": "skills-data-engineering-big-data",
-      "name": "Data Engineering & Big Data",
-      "items": [
-        "Apache Spark",
-        "Apache Airflow",
-        "data warehousing",
-        "ETL Pipelines"
+      "id": "skill-lstms",
+      "name": "LSTMs",
+      "categories": [
+        "Machine Learning & AI"
       ]
     },
     {
-      "id": "skills-databases",
-      "name": "Databases",
-      "items": [
-        "MySQL",
-        "SQL Server",
-        "MongoDB",
-        "ClickHouse"
+      "id": "skill-gans",
+      "name": "GANs",
+      "categories": [
+        "Machine Learning & AI"
       ]
     },
     {
-      "id": "skills-backend-development",
-      "name": "Backend Development",
-      "items": [
-        "Node.js",
-        "MVC architecture",
-        "JWT authentication"
+      "id": "skill-transformers",
+      "name": "Transformers",
+      "categories": [
+        "Machine Learning & AI"
       ]
     },
     {
-      "id": "skills-frontend-development",
-      "name": "Frontend Development",
-      "items": [
-        "React",
-        "Redux",
-        "Material UI"
+      "id": "skill-reinforcement-learning",
+      "name": "reinforcement learning",
+      "categories": [
+        "Machine Learning & AI"
       ]
     },
     {
-      "id": "skills-analytics-business-intelligence",
-      "name": "Analytics & Business Intelligence",
-      "items": [
-        "KPI design",
-        "ROI analysis",
-        "data visualisation",
-        "stakeholder reporting"
+      "id": "skill-natural-language-processing",
+      "name": "natural language processing",
+      "categories": [
+        "Machine Learning & AI"
       ]
     },
     {
-      "id": "skills-documentation-research",
-      "name": "Documentation & Research",
-      "items": [
-        "Documentation"
+      "id": "skill-predictive-modelling",
+      "name": "predictive modelling",
+      "categories": [
+        "Machine Learning & AI"
       ]
     },
     {
-      "id": "skills-practices",
-      "name": "Practices",
-      "items": [
-        "Model Monitoring",
-        "A/B Testing",
-        "Automated Testing (pytest)",
-        "Reproducibility",
-        "GDPR & Data Governance"
+      "id": "skill-forecasting",
+      "name": "forecasting",
+      "categories": [
+        "Machine Learning & AI"
       ]
     },
     {
-      "id": "skills-soft-skills",
-      "name": "Soft Skills",
-      "items": [
-        "Stakeholder management",
-        "effective communication",
-        "presentation",
-        "stakeholder reporting",
-        "Problem-solving",
-        "analytical thinking",
-        "decision-making",
-        "Cross-functional collaboration",
-        "leadership",
-        "End-to-end project delivery"
+      "id": "skill-time-series-forecasting",
+      "name": "time-series forecasting",
+      "categories": [
+        "Machine Learning & AI",
+        "Time-Series Analysis"
+      ]
+    },
+    {
+      "id": "skill-llms",
+      "name": "LLMs",
+      "categories": [
+        "Machine Learning & AI"
+      ]
+    },
+    {
+      "id": "skill-rag",
+      "name": "RAG",
+      "categories": [
+        "Machine Learning & AI"
+      ]
+    },
+    {
+      "id": "skill-agentic-ai",
+      "name": "agentic AI",
+      "categories": [
+        "Machine Learning & AI"
+      ]
+    },
+    {
+      "id": "skill-prompt-engineering",
+      "name": "prompt engineering",
+      "categories": [
+        "Machine Learning & AI",
+        "Agentic AI"
+      ]
+    },
+    {
+      "id": "skill-feature-engineering",
+      "name": "feature engineering",
+      "categories": [
+        "Machine Learning & AI"
+      ]
+    },
+    {
+      "id": "skill-model-evaluation",
+      "name": "model evaluation",
+      "categories": [
+        "Machine Learning & AI"
+      ]
+    },
+    {
+      "id": "skill-large-language-models-llms",
+      "name": "Large Language Models (LLMs)",
+      "categories": [
+        "Agentic AI"
+      ]
+    },
+    {
+      "id": "skill-langchain",
+      "name": "LangChain",
+      "categories": [
+        "Agentic AI",
+        "Machine Learning Frameworks"
+      ]
+    },
+    {
+      "id": "skill-retrieval-augmented-generation-rag",
+      "name": "Retrieval-Augmented Generation (RAG)",
+      "categories": [
+        "Agentic AI"
+      ]
+    },
+    {
+      "id": "skill-vector-databases-chromadb",
+      "name": "Vector Databases (ChromaDB)",
+      "categories": [
+        "Agentic AI"
+      ]
+    },
+    {
+      "id": "skill-embeddings",
+      "name": "Embeddings",
+      "categories": [
+        "Agentic AI"
+      ]
+    },
+    {
+      "id": "skill-guardrails",
+      "name": "Guardrails",
+      "categories": [
+        "Agentic AI"
+      ]
+    },
+    {
+      "id": "skill-human-in-the-loop",
+      "name": "Human-in-the-Loop",
+      "categories": [
+        "Agentic AI"
+      ]
+    },
+    {
+      "id": "skill-pytorch",
+      "name": "PyTorch",
+      "categories": [
+        "Machine Learning Frameworks"
+      ]
+    },
+    {
+      "id": "skill-tensorflow",
+      "name": "TensorFlow",
+      "categories": [
+        "Machine Learning Frameworks"
+      ]
+    },
+    {
+      "id": "skill-scikit-learn",
+      "name": "scikit-learn",
+      "categories": [
+        "Machine Learning Frameworks"
+      ]
+    },
+    {
+      "id": "skill-hugging-face",
+      "name": "Hugging Face",
+      "categories": [
+        "Machine Learning Frameworks"
+      ]
+    },
+    {
+      "id": "skill-mlflow",
+      "name": "MLflow",
+      "categories": [
+        "MLOps, Deployment & Cloud"
+      ]
+    },
+    {
+      "id": "skill-docker",
+      "name": "Docker",
+      "categories": [
+        "MLOps, Deployment & Cloud"
+      ]
+    },
+    {
+      "id": "skill-terraform-iac",
+      "name": "Terraform (IaC)",
+      "categories": [
+        "MLOps, Deployment & Cloud"
+      ]
+    },
+    {
+      "id": "skill-github-actions-ci-cd",
+      "name": "GitHub Actions (CI/CD)",
+      "categories": [
+        "MLOps, Deployment & Cloud"
+      ]
+    },
+    {
+      "id": "skill-aws",
+      "name": "AWS",
+      "categories": [
+        "MLOps, Deployment & Cloud"
+      ]
+    },
+    {
+      "id": "skill-oracle-cloud-infrastructure-oci",
+      "name": "Oracle Cloud Infrastructure (OCI)",
+      "categories": [
+        "MLOps, Deployment & Cloud"
+      ]
+    },
+    {
+      "id": "skill-fastapi",
+      "name": "FastAPI",
+      "categories": [
+        "MLOps, Deployment & Cloud"
+      ]
+    },
+    {
+      "id": "skill-rest-apis",
+      "name": "REST APIs",
+      "categories": [
+        "MLOps, Deployment & Cloud"
+      ]
+    },
+    {
+      "id": "skill-model-serving",
+      "name": "Model Serving",
+      "categories": [
+        "MLOps, Deployment & Cloud"
+      ]
+    },
+    {
+      "id": "skill-batch-inference",
+      "name": "Batch Inference",
+      "categories": [
+        "MLOps, Deployment & Cloud"
+      ]
+    },
+    {
+      "id": "skill-git",
+      "name": "Git",
+      "categories": [
+        "MLOps, Deployment & Cloud"
+      ]
+    },
+    {
+      "id": "skill-streamlit",
+      "name": "Streamlit",
+      "categories": [
+        "MLOps, Deployment & Cloud"
+      ]
+    },
+    {
+      "id": "skill-gradio",
+      "name": "Gradio",
+      "categories": [
+        "MLOps, Deployment & Cloud"
+      ]
+    },
+    {
+      "id": "skill-pandas",
+      "name": "Pandas",
+      "categories": [
+        "Data Analysis and Visualisation"
+      ]
+    },
+    {
+      "id": "skill-numpy",
+      "name": "NumPy",
+      "categories": [
+        "Data Analysis and Visualisation"
+      ]
+    },
+    {
+      "id": "skill-tableau",
+      "name": "Tableau",
+      "categories": [
+        "Data Analysis and Visualisation"
+      ]
+    },
+    {
+      "id": "skill-power-bi",
+      "name": "Power BI",
+      "categories": [
+        "Data Analysis and Visualisation"
+      ]
+    },
+    {
+      "id": "skill-ga4",
+      "name": "GA4",
+      "categories": [
+        "Data Analysis and Visualisation"
+      ]
+    },
+    {
+      "id": "skill-google-analytics",
+      "name": "Google Analytics",
+      "categories": [
+        "Data Analysis and Visualisation"
+      ]
+    },
+    {
+      "id": "skill-metabase",
+      "name": "Metabase",
+      "categories": [
+        "Data Analysis and Visualisation"
+      ]
+    },
+    {
+      "id": "skill-excel",
+      "name": "Excel",
+      "categories": [
+        "Data Analysis and Visualisation"
+      ]
+    },
+    {
+      "id": "skill-applied-statistics",
+      "name": "Applied statistics",
+      "categories": [
+        "Statistics, Experimentation & Causal Inference"
+      ]
+    },
+    {
+      "id": "skill-statistical-modelling",
+      "name": "statistical modelling",
+      "categories": [
+        "Statistics, Experimentation & Causal Inference"
+      ]
+    },
+    {
+      "id": "skill-hypothesis-testing",
+      "name": "hypothesis testing",
+      "categories": [
+        "Statistics, Experimentation & Causal Inference"
+      ]
+    },
+    {
+      "id": "skill-a-b-testing",
+      "name": "A/B testing",
+      "categories": [
+        "Statistics, Experimentation & Causal Inference",
+        "Practices"
+      ]
+    },
+    {
+      "id": "skill-experimental-design",
+      "name": "experimental design",
+      "categories": [
+        "Statistics, Experimentation & Causal Inference"
+      ]
+    },
+    {
+      "id": "skill-causal-inference",
+      "name": "causal inference",
+      "categories": [
+        "Statistics, Experimentation & Causal Inference"
+      ]
+    },
+    {
+      "id": "skill-difference-in-differences",
+      "name": "Difference-in-Differences",
+      "categories": [
+        "Statistics, Experimentation & Causal Inference"
+      ]
+    },
+    {
+      "id": "skill-propensity-score-matching",
+      "name": "propensity score matching",
+      "categories": [
+        "Statistics, Experimentation & Causal Inference"
+      ]
+    },
+    {
+      "id": "skill-counterfactual-analysis",
+      "name": "counterfactual analysis",
+      "categories": [
+        "Statistics, Experimentation & Causal Inference"
+      ]
+    },
+    {
+      "id": "skill-sensitivity-analysis",
+      "name": "sensitivity analysis",
+      "categories": [
+        "Statistics, Experimentation & Causal Inference"
+      ]
+    },
+    {
+      "id": "skill-confidence-intervals",
+      "name": "confidence intervals",
+      "categories": [
+        "Statistics, Experimentation & Causal Inference"
+      ]
+    },
+    {
+      "id": "skill-minimum-detectable-effect-analysis",
+      "name": "minimum detectable effect analysis",
+      "categories": [
+        "Statistics, Experimentation & Causal Inference"
+      ]
+    },
+    {
+      "id": "skill-intervention-analysis",
+      "name": "intervention analysis",
+      "categories": [
+        "Statistics, Experimentation & Causal Inference"
+      ]
+    },
+    {
+      "id": "skill-time-series-analysis",
+      "name": "Time-series analysis",
+      "categories": [
+        "Time-Series Analysis"
+      ]
+    },
+    {
+      "id": "skill-apache-spark",
+      "name": "Apache Spark",
+      "categories": [
+        "Data Engineering & Big Data"
+      ]
+    },
+    {
+      "id": "skill-apache-airflow",
+      "name": "Apache Airflow",
+      "categories": [
+        "Data Engineering & Big Data"
+      ]
+    },
+    {
+      "id": "skill-data-warehousing",
+      "name": "data warehousing",
+      "categories": [
+        "Data Engineering & Big Data"
+      ]
+    },
+    {
+      "id": "skill-etl-pipelines",
+      "name": "ETL Pipelines",
+      "categories": [
+        "Data Engineering & Big Data"
+      ]
+    },
+    {
+      "id": "skill-mysql",
+      "name": "MySQL",
+      "categories": [
+        "Databases"
+      ]
+    },
+    {
+      "id": "skill-sql-server",
+      "name": "SQL Server",
+      "categories": [
+        "Databases"
+      ]
+    },
+    {
+      "id": "skill-mongodb",
+      "name": "MongoDB",
+      "categories": [
+        "Databases"
+      ]
+    },
+    {
+      "id": "skill-clickhouse",
+      "name": "ClickHouse",
+      "categories": [
+        "Databases"
+      ]
+    },
+    {
+      "id": "skill-node-js",
+      "name": "Node.js",
+      "categories": [
+        "Backend Development"
+      ]
+    },
+    {
+      "id": "skill-mvc-architecture",
+      "name": "MVC architecture",
+      "categories": [
+        "Backend Development"
+      ]
+    },
+    {
+      "id": "skill-jwt-authentication",
+      "name": "JWT authentication",
+      "categories": [
+        "Backend Development"
+      ]
+    },
+    {
+      "id": "skill-react",
+      "name": "React",
+      "categories": [
+        "Frontend Development"
+      ]
+    },
+    {
+      "id": "skill-redux",
+      "name": "Redux",
+      "categories": [
+        "Frontend Development"
+      ]
+    },
+    {
+      "id": "skill-material-ui",
+      "name": "Material UI",
+      "categories": [
+        "Frontend Development"
+      ]
+    },
+    {
+      "id": "skill-kpi-design",
+      "name": "KPI design",
+      "categories": [
+        "Analytics & Business Intelligence"
+      ]
+    },
+    {
+      "id": "skill-roi-analysis",
+      "name": "ROI analysis",
+      "categories": [
+        "Analytics & Business Intelligence"
+      ]
+    },
+    {
+      "id": "skill-data-visualisation",
+      "name": "data visualisation",
+      "categories": [
+        "Analytics & Business Intelligence"
+      ]
+    },
+    {
+      "id": "skill-stakeholder-reporting",
+      "name": "stakeholder reporting",
+      "categories": [
+        "Analytics & Business Intelligence",
+        "Soft Skills"
+      ]
+    },
+    {
+      "id": "skill-documentation",
+      "name": "Documentation",
+      "categories": [
+        "Documentation & Research"
+      ]
+    },
+    {
+      "id": "skill-model-monitoring",
+      "name": "Model Monitoring",
+      "categories": [
+        "Practices"
+      ]
+    },
+    {
+      "id": "skill-automated-testing-pytest",
+      "name": "Automated Testing (pytest)",
+      "categories": [
+        "Practices"
+      ]
+    },
+    {
+      "id": "skill-reproducibility",
+      "name": "Reproducibility",
+      "categories": [
+        "Practices"
+      ]
+    },
+    {
+      "id": "skill-gdpr-data-governance",
+      "name": "GDPR & Data Governance",
+      "categories": [
+        "Practices"
+      ]
+    },
+    {
+      "id": "skill-stakeholder-management",
+      "name": "Stakeholder management",
+      "categories": [
+        "Soft Skills"
+      ]
+    },
+    {
+      "id": "skill-effective-communication",
+      "name": "effective communication",
+      "categories": [
+        "Soft Skills"
+      ]
+    },
+    {
+      "id": "skill-presentation",
+      "name": "presentation",
+      "categories": [
+        "Soft Skills"
+      ]
+    },
+    {
+      "id": "skill-problem-solving",
+      "name": "Problem-solving",
+      "categories": [
+        "Soft Skills"
+      ]
+    },
+    {
+      "id": "skill-analytical-thinking",
+      "name": "analytical thinking",
+      "categories": [
+        "Soft Skills"
+      ]
+    },
+    {
+      "id": "skill-decision-making",
+      "name": "decision-making",
+      "categories": [
+        "Soft Skills"
+      ]
+    },
+    {
+      "id": "skill-cross-functional-collaboration",
+      "name": "Cross-functional collaboration",
+      "categories": [
+        "Soft Skills"
+      ]
+    },
+    {
+      "id": "skill-leadership",
+      "name": "leadership",
+      "categories": [
+        "Soft Skills"
+      ]
+    },
+    {
+      "id": "skill-end-to-end-project-delivery",
+      "name": "End-to-end project delivery",
+      "categories": [
+        "Soft Skills"
       ]
     }
   ],
@@ -625,7 +1272,7 @@
     {
       "id": "cert-supervised-machine-learning-regression",
       "title": "Supervised Machine Learning: Regression and Classification",
-      "provider": "Stanford University (Courser,",
+      "provider": "Stanford University (Coursera)",
       "year": 2022,
       "link": null
     },

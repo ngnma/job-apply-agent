@@ -13,16 +13,17 @@ from pathlib import Path
 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_ollama import ChatOllama
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from job_agent.contracts.cv import (
     Certification,
     Contact,
     Education,
     Experience,
+    HeadingText,
     MasterCV,
     Project,
-    SkillGroup,
+    Skill,
     Strict,
 )
 from job_agent.rag.loader import load_cv_text
@@ -70,8 +71,28 @@ class Experiences(Strict):
 class Projects(Strict):
     items: list[Project]
 
+class SkillGroup(Strict):
+    """Extraction-only: the CV lists skills in groups; code splits them into Skills."""
+    name: HeadingText  # e.g. "MLOps, Deployment & Cloud"
+    items: list[str] = Field(min_length=1)
+
 class Skills(Strict):
     items: list[SkillGroup]
+
+
+def skills_from_groups(groups: list[SkillGroup]) -> list[Skill]:
+    """One Skill per item. Items like "Python, SQL" are split on commas; the same skill
+    listed twice (any letter case) becomes one Skill with both categories."""
+    by_key: dict[str, Skill] = {}
+    for group in groups:
+        for item in group.items:
+            for name in (n.strip() for n in item.split(",")):
+                if not name:
+                    continue
+                skill = by_key.setdefault(name.lower(), Skill(name=name, categories=[group.name]))
+                if group.name not in skill.categories:
+                    skill.categories.append(group.name)
+    return list(by_key.values())
 
 class EducationList(Strict):
     items: list[Education]
@@ -99,6 +120,9 @@ SYSTEM_PROMPT = (
     "- Each line starting with '- ' is one bullet. Keep every bullet, in order.\n"
     "- Entry headers look like 'Position | Company | Location | MM/YYYY – MM/YYYY' "
     "or 'Project title | tools | GitHub (url)'.\n"
+    "- Project 'link': only the URL inside the brackets, e.g. 'https://github.com/x'. "
+    "If there is no URL, set it to null.\n"
+    "- Bullet 'text': the bullet without the leading '- '.\n"
     "- Dates: 'MM/YYYY' -> year and month. If the end is 'Present' or missing, set end to null.\n"
     "- Bullet 'skills': only tools or skills literally named in that bullet; empty list if none.\n"
     "- Lines starting with '##' or '###' are group names (e.g. a skill group name).\n"
@@ -126,7 +150,35 @@ def extract_section(llm: ChatOllama, section: str, text: str) -> BaseModel:
     return chain.with_retry(stop_after_attempt=3).invoke({"section": section, "text": text})
 
 
-# ---------- 4. IDs are made by code, not by the LLM (stable + always valid) ----------
+# ---------- 4. undo whitespace mistakes: copy the exact text back from the CV ----------
+
+def _snap_to_source(value: str, source: str) -> str:
+    """Small local models sometimes drop or add spaces when copying
+    ("baselinemodel" instead of "baseline model"). If the same characters exist in
+    the CV (ignoring whitespace), return the CV's original text instead."""
+    chars = [re.escape(c) for c in value if not c.isspace()]
+    if not chars:
+        return value
+    match = re.search(r"\s*".join(chars), source)
+    return " ".join(match.group(0).split()) if match else value
+
+
+def restore_source_text(model: BaseModel, source: str) -> None:
+    """Apply _snap_to_source to every text field of an extracted section (in place)."""
+    for name, value in model:
+        if isinstance(value, str):
+            setattr(model, name, _snap_to_source(value, source))
+        elif isinstance(value, BaseModel):
+            restore_source_text(value, source)
+        elif isinstance(value, list):
+            for i, item in enumerate(value):
+                if isinstance(item, str):
+                    value[i] = _snap_to_source(item, source)
+                elif isinstance(item, BaseModel):
+                    restore_source_text(item, source)
+
+
+# ---------- 5. IDs are made by code, not by the LLM (stable + always valid) ----------
 
 def _slug(text: str, max_words: int = 4) -> str:
     return "-".join(re.findall(r"[a-z0-9]+", text.lower())[:max_words])
@@ -150,15 +202,15 @@ def assign_ids(cv: MasterCV) -> None:
         proj.id = unique(f"proj-{_slug(proj.title.split('—')[0])}")
         for i, b in enumerate(proj.bullets, 1):
             b.id = unique(f"{proj.id}-b{i}")
-    for group in cv.skills:
-        group.id = unique(f"skills-{_slug(group.name)}")
+    for skill in cv.skills:
+        skill.id = unique(f"skill-{_slug(skill.name, 6)}")
     for edu in cv.education:
         edu.id = unique(f"edu-{_slug(edu.degree, 1)}")
     for cert in cv.certifications:
         cert.id = unique(f"cert-{_slug(cert.title)}")
 
 
-# ---------- 5. quality checks: did the LLM drop or change anything? ----------
+# ---------- 6. quality checks: did the LLM drop or change anything? ----------
 
 def _norm(s: str) -> str:
     return " ".join(s.lower().split())
@@ -179,9 +231,9 @@ def check_extraction(cv: MasterCV, sections: dict[str, str]) -> list[str]:
     return warnings
 
 
-# ---------- 6. run everything ----------
+# ---------- 7. run everything ----------
 
-def extract_master_cv(cv_path: str | Path, model: str = "qwen3:8b") -> tuple[MasterCV, list[str]]:
+def extract_master_cv(cv_path: str | Path, model: str = "qwen3:14b") -> tuple[MasterCV, list[str]]:
     sections = split_sections(load_cv_text(cv_path))
     llm = make_llm(model)
 
@@ -190,13 +242,14 @@ def extract_master_cv(cv_path: str | Path, model: str = "qwen3:8b") -> tuple[Mas
         if text.strip():
             print(f"Extracting {name} ...")
             parts[name] = extract_section(llm, name, text)
+            restore_source_text(parts[name], text)
 
     cv = MasterCV.model_construct(  # build without validation; IDs are not set yet
         contact=parts["contact"],
         summary=parts["summary"].text if "summary" in parts else None,
         experiences=parts["experiences"].items if "experiences" in parts else [],
         projects=parts["projects"].items if "projects" in parts else [],
-        skills=parts["skills"].items if "skills" in parts else [],
+        skills=skills_from_groups(parts["skills"].items) if "skills" in parts else [],
         education=parts["education"].items if "education" in parts else [],
         certifications=parts["certifications"].items if "certifications" in parts else [],
     )
@@ -209,14 +262,14 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Extract a CV into master_cv.json")
     parser.add_argument("cv_path", help="e.g. data/Master.docx")
     parser.add_argument("out_path", help="e.g. data/master_cv.json")
-    parser.add_argument("--model", default="qwen3:8b", help="Ollama model name")
+    parser.add_argument("--model", default="qwen3:14b", help="Ollama model name")
     args = parser.parse_args()
 
     cv, warnings = extract_master_cv(args.cv_path, args.model)
     Path(args.out_path).write_text(cv.model_dump_json(indent=2), encoding="utf-8")
 
     print(f"\nSaved {args.out_path}: {len(cv.experiences)} jobs, {len(cv.projects)} projects, "
-          f"{len(cv.skills)} skill groups, {len(cv.education)} degrees, {len(cv.certifications)} certificates")
+          f"{len(cv.skills)} skills, {len(cv.education)} degrees, {len(cv.certifications)} certificates")
     for w in warnings:
         print("WARNING:", w)
     if not warnings:
