@@ -1,53 +1,40 @@
 # --- Python ---
-
-**pycache**/
-_.py[cod]
-_.egg-info/
+__pycache__/
+*.py[cod]
+*.egg-info/
 build/
 dist/
 
-# --- Virtual environments (uv / venv) ---
-
+# --- Virtual environments ---
 .venv/
 venv/
 
 # --- Secrets & environment ---
-
 .env
-.env._
+.env.*
 !.env.example
-_.pem
+*.pem
 .aws/
 
 # --- Personal data (master CV, generated CVs/cover letters) ---
+data/
 outputs/
-_.docx
-_.pdf
-!tests/fixtures/\*\*
+*.docx
+*.pdf
+!tests/fixtures/**
 
 # --- Testing & tooling caches ---
-
 .pytest_cache/
 .coverage
 htmlcov/
 .ruff_cache/
-.mypy_cache/
 
-# --- Notebooks ---
-
-.ipynb_checkpoints/
-
-# --- Docker volumes / local DB data ---
-
-pgdata/
+# --- Eval results ---
+evals/results/
 
 # --- IDE / OS ---
-
 .vscode/
 .idea/
 .DS_Store
 Thumbs.db
-
-# --- Logs ---
-
-\*.log
+*.log
