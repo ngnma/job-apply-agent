@@ -84,7 +84,11 @@ def top_k(query: str, chunks: list[Document], vectors: list[list[float]],
 
 
 def main() -> None:
+    from dotenv import load_dotenv
+
     from job_agent.rag.chunking import chunk_master_cv, load_master_cv
+
+    load_dotenv()  # read settings from .env, if it exists
 
     path = sys.argv[1] if len(sys.argv) > 1 else "data/master_cv.json"
     chunks = chunk_master_cv(load_master_cv(path))
