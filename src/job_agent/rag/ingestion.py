@@ -23,6 +23,7 @@ from langchain_core.embeddings import Embeddings
 from sqlalchemy import create_engine, text
 
 from job_agent.rag.chunking import chunk_master_cv, load_master_cv
+from job_agent.rag.retriever import create_keyword_index
 from job_agent.rag.vectorstore import (
     TABLE_NAME,
     create_hnsw_index,
@@ -136,7 +137,8 @@ def ingest(cv_path: str | Path, embeddings: Embeddings, table_name: str = TABLE_
     if plan.to_delete:
         store.delete(ids=plan.to_delete)
 
-    create_hnsw_index(store)
+    create_hnsw_index(store)              # fast vector search
+    create_keyword_index(table_name)      # fast keyword search (task 8)
     return Report(len(plan.to_add), len(plan.to_update), len(plan.unchanged), len(plan.to_delete))
 
 
