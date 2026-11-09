@@ -1,0 +1,540 @@
+[
+  {
+    "mode": "vector",
+    "k": 5,
+    "hit": 1.0,
+    "recall": 0.8125,
+    "mrr": 0.9625,
+    "queries": [
+      {
+        "query": "Build and orchestrate data pipelines with Apache Airflow",
+        "hit": 1.0,
+        "recall": 0.75,
+        "rr": 1.0,
+        "missed": [
+          "skill-etl-pipelines"
+        ]
+      },
+      {
+        "query": "Experience designing and analysing A/B tests and online experiments",
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "missed": []
+      },
+      {
+        "query": "Causal inference methods such as difference-in-differences",
+        "hit": 1.0,
+        "recall": 0.5,
+        "rr": 1.0,
+        "missed": [
+          "exp-essex-county-b5",
+          "exp-snappshop-b4"
+        ]
+      },
+      {
+        "query": "Measuring the true incremental impact of a marketing channel",
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "missed": []
+      },
+      {
+        "query": "Retrieval-augmented generation with a vector database",
+        "hit": 1.0,
+        "recall": 0.75,
+        "rr": 1.0,
+        "missed": [
+          "skill-rag"
+        ]
+      },
+      {
+        "query": "Building LLM agents that use tools",
+        "hit": 1.0,
+        "recall": 0.75,
+        "rr": 1.0,
+        "missed": [
+          "proj-autonomous-ai-agent-for-b2"
+        ]
+      },
+      {
+        "query": "Deploying machine learning models to AWS with infrastructure as code",
+        "hit": 1.0,
+        "recall": 0.5,
+        "rr": 1.0,
+        "missed": [
+          "skill-aws",
+          "skill-terraform-iac"
+        ]
+      },
+      {
+        "query": "CI/CD pipelines and containerisation with Docker",
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "missed": []
+      },
+      {
+        "query": "Monitoring models in production and detecting data drift",
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "missed": []
+      },
+      {
+        "query": "Training gradient boosting models with XGBoost on large datasets",
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "missed": []
+      },
+      {
+        "query": "Customer segmentation and CRM analytics",
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "missed": []
+      },
+      {
+        "query": "Deep learning with PyTorch",
+        "hit": 1.0,
+        "recall": 0.6666666666666666,
+        "rr": 1.0,
+        "missed": [
+          "skill-deep-learning"
+        ]
+      },
+      {
+        "query": "Time-series forecasting",
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "missed": []
+      },
+      {
+        "query": "Evaluating and comparing large language models for a classification task",
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 0.25,
+        "missed": []
+      },
+      {
+        "query": "Translating business questions into SQL queries",
+        "hit": 1.0,
+        "recall": 0.5,
+        "rr": 1.0,
+        "missed": [
+          "skill-sql"
+        ]
+      },
+      {
+        "query": "Working with non-technical stakeholders to turn requirements into analysis",
+        "hit": 1.0,
+        "recall": 0.3333333333333333,
+        "rr": 1.0,
+        "missed": [
+          "exp-essex-county-b7",
+          "skill-stakeholder-management"
+        ]
+      },
+      {
+        "query": "Public sector data work under GDPR",
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "missed": []
+      },
+      {
+        "query": "Executive dashboards and KPI reporting",
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "missed": []
+      },
+      {
+        "query": "Backend development with Java and PostgreSQL microservices",
+        "hit": 1.0,
+        "recall": 0.5,
+        "rr": 1.0,
+        "missed": [
+          "skill-java"
+        ]
+      },
+      {
+        "query": "Human-in-the-loop review of AI decisions",
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "missed": []
+      }
+    ]
+  },
+  {
+    "mode": "keyword",
+    "k": 5,
+    "hit": 0.95,
+    "recall": 0.6133333333333333,
+    "mrr": 0.8099999999999999,
+    "queries": [
+      {
+        "query": "Build and orchestrate data pipelines with Apache Airflow",
+        "hit": 1.0,
+        "recall": 0.75,
+        "rr": 1.0,
+        "missed": [
+          "skill-etl-pipelines"
+        ]
+      },
+      {
+        "query": "Experience designing and analysing A/B tests and online experiments",
+        "hit": 1.0,
+        "recall": 0.6,
+        "rr": 1.0,
+        "missed": [
+          "skill-a-b-testing",
+          "skill-experimental-design"
+        ]
+      },
+      {
+        "query": "Causal inference methods such as difference-in-differences",
+        "hit": 1.0,
+        "recall": 0.25,
+        "rr": 0.2,
+        "missed": [
+          "exp-essex-county-b5",
+          "exp-snappshop-b4",
+          "skill-difference-in-differences"
+        ]
+      },
+      {
+        "query": "Measuring the true incremental impact of a marketing channel",
+        "hit": 1.0,
+        "recall": 0.75,
+        "rr": 1.0,
+        "missed": [
+          "exp-snappshop-b4"
+        ]
+      },
+      {
+        "query": "Retrieval-augmented generation with a vector database",
+        "hit": 1.0,
+        "recall": 0.5,
+        "rr": 1.0,
+        "missed": [
+          "skill-rag",
+          "skill-vector-databases-chromadb"
+        ]
+      },
+      {
+        "query": "Building LLM agents that use tools",
+        "hit": 1.0,
+        "recall": 0.75,
+        "rr": 1.0,
+        "missed": [
+          "proj-autonomous-ai-agent-for-b2"
+        ]
+      },
+      {
+        "query": "Deploying machine learning models to AWS with infrastructure as code",
+        "hit": 1.0,
+        "recall": 0.5,
+        "rr": 1.0,
+        "missed": [
+          "skill-aws",
+          "skill-terraform-iac"
+        ]
+      },
+      {
+        "query": "CI/CD pipelines and containerisation with Docker",
+        "hit": 0.0,
+        "recall": 0.0,
+        "rr": 0.0,
+        "missed": [
+          "proj-sentiment-analysis-b5",
+          "skill-docker",
+          "skill-github-actions-ci-cd"
+        ]
+      },
+      {
+        "query": "Monitoring models in production and detecting data drift",
+        "hit": 1.0,
+        "recall": 0.5,
+        "rr": 1.0,
+        "missed": [
+          "skill-model-monitoring"
+        ]
+      },
+      {
+        "query": "Training gradient boosting models with XGBoost on large datasets",
+        "hit": 1.0,
+        "recall": 0.5,
+        "rr": 0.5,
+        "missed": [
+          "exp-snappshop-b6"
+        ]
+      },
+      {
+        "query": "Customer segmentation and CRM analytics",
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "missed": []
+      },
+      {
+        "query": "Deep learning with PyTorch",
+        "hit": 1.0,
+        "recall": 0.6666666666666666,
+        "rr": 0.5,
+        "missed": [
+          "skill-pytorch"
+        ]
+      },
+      {
+        "query": "Time-series forecasting",
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "missed": []
+      },
+      {
+        "query": "Evaluating and comparing large language models for a classification task",
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 0.5,
+        "missed": []
+      },
+      {
+        "query": "Translating business questions into SQL queries",
+        "hit": 1.0,
+        "recall": 0.5,
+        "rr": 1.0,
+        "missed": [
+          "skill-sql"
+        ]
+      },
+      {
+        "query": "Working with non-technical stakeholders to turn requirements into analysis",
+        "hit": 1.0,
+        "recall": 0.3333333333333333,
+        "rr": 1.0,
+        "missed": [
+          "exp-essex-county-b7",
+          "skill-stakeholder-management"
+        ]
+      },
+      {
+        "query": "Public sector data work under GDPR",
+        "hit": 1.0,
+        "recall": 0.5,
+        "rr": 1.0,
+        "missed": [
+          "skill-gdpr-data-governance"
+        ]
+      },
+      {
+        "query": "Executive dashboards and KPI reporting",
+        "hit": 1.0,
+        "recall": 0.6666666666666666,
+        "rr": 1.0,
+        "missed": [
+          "skill-kpi-design"
+        ]
+      },
+      {
+        "query": "Backend development with Java and PostgreSQL microservices",
+        "hit": 1.0,
+        "recall": 0.5,
+        "rr": 1.0,
+        "missed": [
+          "skill-java"
+        ]
+      },
+      {
+        "query": "Human-in-the-loop review of AI decisions",
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 0.5,
+        "missed": []
+      }
+    ]
+  },
+  {
+    "mode": "hybrid",
+    "k": 5,
+    "hit": 1.0,
+    "recall": 0.7383333333333333,
+    "mrr": 0.9166666666666666,
+    "queries": [
+      {
+        "query": "Build and orchestrate data pipelines with Apache Airflow",
+        "hit": 1.0,
+        "recall": 0.75,
+        "rr": 1.0,
+        "missed": [
+          "skill-etl-pipelines"
+        ]
+      },
+      {
+        "query": "Experience designing and analysing A/B tests and online experiments",
+        "hit": 1.0,
+        "recall": 0.6,
+        "rr": 1.0,
+        "missed": [
+          "skill-a-b-testing",
+          "skill-experimental-design"
+        ]
+      },
+      {
+        "query": "Causal inference methods such as difference-in-differences",
+        "hit": 1.0,
+        "recall": 0.5,
+        "rr": 0.5,
+        "missed": [
+          "exp-essex-county-b5",
+          "exp-snappshop-b4"
+        ]
+      },
+      {
+        "query": "Measuring the true incremental impact of a marketing channel",
+        "hit": 1.0,
+        "recall": 0.75,
+        "rr": 1.0,
+        "missed": [
+          "exp-snappshop-b4"
+        ]
+      },
+      {
+        "query": "Retrieval-augmented generation with a vector database",
+        "hit": 1.0,
+        "recall": 0.75,
+        "rr": 1.0,
+        "missed": [
+          "skill-rag"
+        ]
+      },
+      {
+        "query": "Building LLM agents that use tools",
+        "hit": 1.0,
+        "recall": 0.75,
+        "rr": 1.0,
+        "missed": [
+          "proj-autonomous-ai-agent-for-b2"
+        ]
+      },
+      {
+        "query": "Deploying machine learning models to AWS with infrastructure as code",
+        "hit": 1.0,
+        "recall": 0.5,
+        "rr": 1.0,
+        "missed": [
+          "skill-aws",
+          "skill-terraform-iac"
+        ]
+      },
+      {
+        "query": "CI/CD pipelines and containerisation with Docker",
+        "hit": 1.0,
+        "recall": 0.6666666666666666,
+        "rr": 0.5,
+        "missed": [
+          "skill-github-actions-ci-cd"
+        ]
+      },
+      {
+        "query": "Monitoring models in production and detecting data drift",
+        "hit": 1.0,
+        "recall": 0.5,
+        "rr": 1.0,
+        "missed": [
+          "skill-model-monitoring"
+        ]
+      },
+      {
+        "query": "Training gradient boosting models with XGBoost on large datasets",
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "missed": []
+      },
+      {
+        "query": "Customer segmentation and CRM analytics",
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "missed": []
+      },
+      {
+        "query": "Deep learning with PyTorch",
+        "hit": 1.0,
+        "recall": 0.6666666666666666,
+        "rr": 1.0,
+        "missed": [
+          "skill-deep-learning"
+        ]
+      },
+      {
+        "query": "Time-series forecasting",
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "missed": []
+      },
+      {
+        "query": "Evaluating and comparing large language models for a classification task",
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 0.3333333333333333,
+        "missed": []
+      },
+      {
+        "query": "Translating business questions into SQL queries",
+        "hit": 1.0,
+        "recall": 0.5,
+        "rr": 1.0,
+        "missed": [
+          "skill-sql"
+        ]
+      },
+      {
+        "query": "Working with non-technical stakeholders to turn requirements into analysis",
+        "hit": 1.0,
+        "recall": 0.3333333333333333,
+        "rr": 1.0,
+        "missed": [
+          "exp-essex-county-b7",
+          "skill-stakeholder-management"
+        ]
+      },
+      {
+        "query": "Public sector data work under GDPR",
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "missed": []
+      },
+      {
+        "query": "Executive dashboards and KPI reporting",
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "missed": []
+      },
+      {
+        "query": "Backend development with Java and PostgreSQL microservices",
+        "hit": 1.0,
+        "recall": 0.5,
+        "rr": 1.0,
+        "missed": [
+          "skill-java"
+        ]
+      },
+      {
+        "query": "Human-in-the-loop review of AI decisions",
+        "hit": 1.0,
+        "recall": 1.0,
+        "rr": 1.0,
+        "missed": []
+      }
+    ]
+  }
+]
